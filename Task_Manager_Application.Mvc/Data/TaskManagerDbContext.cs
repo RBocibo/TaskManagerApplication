@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Task_Manager_Application.Mvc.Models;
 using Task = Task_Manager_Application.Mvc.Models.Task;
 

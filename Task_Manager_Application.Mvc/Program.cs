@@ -1,4 +1,6 @@
-using Task_Manager_Application.Mvc.Infrastructure.UnitOfWork;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Task_Manager_Application.Mvc.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +8,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //Register Application Db Context
+builder.Services.AddDbContext<TaskManagerDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TaskManagerConnStr"));
+});
+
+//register Identity Db Context
+//builder.Services.AddDefaultIdentity<IdentityDbContext>(options =>
+//{
+//    options.SignIn.RequireConfirmedAccount = false;
+//});
+//builder.Services.AddScoped<IIdentityService>
 
 
 //Register repositories
