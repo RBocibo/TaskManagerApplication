@@ -1,3 +1,5 @@
+using Task_Manager_Application.Mvc.Infrastructure.UnitOfWork;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +7,9 @@ builder.Services.AddControllersWithViews();
 
 //Register Application Db Context
 
+
+//Register repositories
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
