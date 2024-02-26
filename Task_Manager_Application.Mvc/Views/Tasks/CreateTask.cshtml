@@ -1,0 +1,34 @@
+﻿@using Task_Manager_Application.Mvc.Enums
+@model Task_Manager_Application.Mvc.Models.Task
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta />
+        <title>Create task</title>
+    </head>
+    <body>
+    @using(Html.BeginForm())
+    {
+        <h4>Create Task</h4><br />
+        <div class="form-control">
+            @Html.LabelFor(x => x.Name)
+            @Html.TextBoxFor(x => x.Name)
+        </div><br />
+        <div class="form-control">
+            @Html.LabelFor(x => x.Description)
+            @Html.TextAreaFor(x => x.Description,15, 100, "")
+        </div><br />
+        <div class="form-control">
+            @Html.LabelFor(x => x.Priority)
+            @Html.DropDownListFor(x => x.Priority, new SelectList(Enum.GetValues(typeof(PriorityEnum))), "Select Priority")
+        </div><br />
+        <div class="form-control">
+            @Html.LabelFor(x => x.PersonNames)
+            @Html.TextBoxFor(x => x.PersonNames)
+        </div><br />
+        <button class="btn btn-primary" type="submit">Save</button>
+        <button class="btn btn-secondary" type="reset">Cancel</button>
+    }
+    </body>
+</html>

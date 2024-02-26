@@ -1,0 +1,40 @@
+﻿@model List<Task_Manager_Application.Mvc.Models.Task>
+
+<h4>Total Number of Opened tasks: @Model.Count()</h4>
+
+<div class="p-2">
+    <table class="table table-sm table-striped table-bordered">
+        <thead>
+            <tr>
+                <th> ID </th>
+                <th> Name </th>
+                <th> Description </th>
+                <th> Date Created </th>
+                <th> Date Modified </th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Created By</th>
+                <th>Modify</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.OrderBy(x => x.Id))
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>@item.DateCreated</td>
+                    <td>@item.DateModified</td>
+                    <td>@item.Priority</td>
+                    <td>@item.Status</td>
+                    <td>@item.PersonNames</td>
+                    <td>
+                        <a class="btn btn-sm btn-warning" asp-controller="Tasks" asp-action="EditTask" asp-route-id="@item.Id">Modify</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<a class="btn btn-primary mx-2" asp-controller="Tasks" asp-action="CreateTask">Create Task</a>
