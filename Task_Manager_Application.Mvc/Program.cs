@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Task_Manager_Application.Mvc.Data;
+using Task_Manager_Application.Mvc.Entities.Repositories;
+using Task_Manager_Application.Mvc.Infrastructure.Repository;
 using Task_Manager_Application.Mvc.Infrastructure.UnitOfWork;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +26,8 @@ builder.Services.AddDbContext<TaskManagerDbContext>(options =>
 
 //Register repositories
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Task_Manager_Application.Mvc.Entities.Repositories;
 using Task_Manager_Application.Mvc.Models;
 
 namespace Task_Manager_Application.Mvc.Controllers
@@ -7,15 +8,20 @@ namespace Task_Manager_Application.Mvc.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ITaskRepository _taskRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ITaskRepository taskRepository)
         {
             _logger = logger;
+            _taskRepository = taskRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            DateTime dateTime = DateTime.Now;
+            ViewBag.Dates = dateTime;
+            var tasks = await _taskRepository.GetAllAsync();
+            return View(tasks);
         }
 
         public IActionResult Privacy()
